@@ -1,0 +1,84 @@
+:root{
+    --red: #C93A1F;
+    --cream: #FFF3E0;
+    --ink: #1E1410;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: "DM Sans", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+}
+
+.top-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: var(--ink);
+    color: var(--cream);
+}
+
+.top-bar h1{
+    margin: 0;
+    font-size: 24px;
+}
+
+#cart-button{
+    background: var(--red);
+    color: var(--cream);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.banner{
+    background: var(--red);
+    color: var(--cream);
+    padding: 48px 24px;
+}
+
+.banner h2{
+    margin: 0 0 8px 0;
+    font-size: 40px;
+}
+
+#menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 24px;
+}
+
+.card{
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.card h3{
+    margin: 0;
+}
+
+.card .price{
+    font-weight: 700;
+    color: var(--red);
+}
+
+.card button{
+    margin-top: auto;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 6px;
+    cursor: pointer;
+}
