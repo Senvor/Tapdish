@@ -134,3 +134,30 @@ function showMenu() {
 }
 
 showMenu();
+
+let cart = [];
+
+const cartButton = document.getElementById("cart-button");
+
+function updateCartButton() {
+    const totalItems = cart.reduce((sum, line) => sum + line.qty, 0);
+    cartButton.textContent = `Cart (${totalItems})`;
+}
+
+function addToCart(itemId) {
+    const existing = cart.find(line => line.id === itemId);
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ id: itemId, qty: 1 });
+    }
+
+    updateCartButton();
+}
+
+menuEl.addEventListener("click", e => {
+    const id = e.target.dataset.id;
+    if (!id) return;
+    addToCart(Number(id));
+});
