@@ -103,3 +103,34 @@ const menu = [
     {id: 90, category: "Desserts & Drinks", name: "Strawberry Smoothie", desc: "Blended fresh strawberries with yogurt and honey", price: 5.49}
 
 ];
+
+const menuEl = document.getElementById("menu");
+
+const categories = [...new Set(menu.map(item => item.category))];
+
+function showMenu() {
+    menuEl.innerHTML = "";
+
+    categories.forEach(category => {
+        const titleEl = document.createElement("h2");
+        titleEl.className = "category-title";
+        titleEl.textContent = category;
+        menuEl.appendChild(titleEl);
+
+        const items = menu.filter(item => item.category === category);
+
+        items.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>${item.desc}</p>
+                <span class="price">$${item.price.toFixed(2)}</span>
+                <button data-id="${item.id}">Add to cart</button>
+            `;
+            menuEl.appendChild(card);
+        });
+    });
+}
+
+showMenu();
