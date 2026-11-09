@@ -240,3 +240,58 @@ overlay.addEventListener("click", closeCart);
 document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeCart();
 });
+
+const checkoutEl = document.getElementById("checkout");
+const checkoutForm = document.getElementById("checkout-form");
+
+function cartTotal() {
+    return cart.reduce((sum, line) => {
+        const item = menu.find(m => m.id === line.id);
+        return sum + item.price * line.qty;
+    }, 0);
+}
+
+document.getElementById("checkout-button").addEventListener("click", () => {
+    if (cart.length === 0) return;
+
+    document.getElementById("checkout-total").textContent = "$" + cartTotal().toFixed(2);
+    closeCart();
+    checkoutEl.classList.remove("done");
+    checkoutEl.classList.add("open");
+});
+
+document.getElementById("cancel-checkout").addEventListener("click", () => {
+    checkoutEl.classList.remove("open");
+    openCart();
+});
+
+checkoutForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const order = {
+        number: Math.floor(1000 + Math.random() * 9000),
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        lines: cart.map(line => {
+            const item = menu.find(m => m.id === line.id);
+            return { name: item.name, qty: line.qty, price: item.price };
+        }),
+        total: cartTotal()
+    };
+
+    console.log(order);
+
+    document.getElementById("confirm-name").textContent = order.name;
+    document.getElementById("confirm-number").textContent = "#" + order.number;
+    checkoutEl.classList.add("done");
+
+    cart = [];
+    updateCartButton();
+    showCart();
+    checkoutForm.reset();
+});
+
+document.getElementById("close-confirmation").addEventListener("click", () => {
+    checkoutEl.classList.remove("open");
+});

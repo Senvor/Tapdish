@@ -40,6 +40,35 @@
         </div>
     </aside>
 
+        <div id="checkout" class="checkout">
+        <form id="checkout-form" class="checkout-box">
+            <h2>Checkout</h2>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <p>Total: <strong id="checkout-total"></strong></p>
+
+            <div class="checkout-buttons">
+                <button type="button" id="cancel-checkout">Back</button>
+                <button type="submit">Place order</button>
+            </div>
+        </form>
+
+        <div class="checkout-box confirmation">
+            <h2>Order placed</h2>
+            <p>Thanks, <strong id="confirm-name"></strong>.</p>
+            <p>Your order number is <strong id="confirm-number"></strong>.</p>
+            <button type="button" id="close-confirmation">Done</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
