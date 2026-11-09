@@ -138,6 +138,10 @@ showMenu();
 let cart = [];
 
 const cartButton = document.getElementById("cart-button");
+const cartPanel = document.getElementById("cart-panel");
+const cartItemsEl = document.getElementById("cart-items");
+const cartTotalEl = document.getElementById("cart-total");
+const overlay = document.getElementById("overlay");
 
 function updateCartButton() {
     const totalItems = cart.reduce((sum, line) => sum + line.qty, 0);
@@ -154,10 +158,85 @@ function addToCart(itemId) {
     }
 
     updateCartButton();
+    showCart();
+}
+
+function showCart() {
+    cartItemsEl.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        cart.forEach(line => {
+            const item = menu.find(i => i.id === line.id);
+            if (!item) return;
+
+            total += item.price * line.qty;
+
+            const row = document.createElement("div");
+            row.className = "cart-row";
+            row.innerHTML = `
+                <div>
+                    <h4>${item.name}</h4>
+                    <span>$${(item.price * line.qty).toFixed(2)}</span>
+                </div>
+                <div class="qty">
+                    <button data-action="minus" data-id="${item.id}">-</button>
+                    <span>${line.qty}</span>
+                    <button data-action="plus" data-id="${item.id}">+</button>
+                </div>
+            `;
+            cartItemsEl.appendChild(row);
+        });
+    }
+
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+function changeQty(id, change) {
+    const line = cart.find(l => l.id === id);
+    if (!line) return;
+
+    line.qty += change;
+
+    if (line.qty <= 0) {
+        cart = cart.filter(l => l.id !== id);
+    }
+
+    updateCartButton();
+    showCart();
+}
+
+function openCart() {
+    showCart();
+    cartPanel.classList.add("open");
+    overlay.classList.add("open");
+}
+
+function closeCart() {
+    cartPanel.classList.remove("open");
+    overlay.classList.remove("open");
 }
 
 menuEl.addEventListener("click", e => {
     const id = e.target.dataset.id;
     if (!id) return;
     addToCart(Number(id));
+});
+
+cartItemsEl.addEventListener("click", e => {
+    const id = e.target.dataset.id;
+    const action = e.target.dataset.action;
+    if (!id) return;
+
+    changeQty(Number(id), action === "plus" ? 1 : -1);
+});
+
+cartButton.addEventListener("click", openCart);
+document.getElementById("close-cart").addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeCart();
 });

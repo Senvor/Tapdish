@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
     <header class="top-bar">
         <h1>Tapdish</h1>
         <button id="cart-button">Cart (0)</button>
@@ -20,9 +20,25 @@
 
     <main>
         <section id="menu">
-            //tbd
+            <!-- menu cards get added here by script.js -->
         </section>
-        </main>
+    </main>
+
+    <div id="overlay" class="overlay"></div>
+
+    <aside id="cart-panel" class="cart-panel">
+        <div class="cart-head">
+            <h2>Your order</h2>
+            <button id="close-cart">Close</button>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <div class="cart-foot">
+            <p>Total: <strong id="cart-total">$0.00</strong></p>
+            <button id="checkout-button">Checkout</button>
+        </div>
+    </aside>
 
     <script src="script.js"></script>
 </body>
