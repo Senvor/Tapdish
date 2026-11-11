@@ -10,6 +10,7 @@
 
 html{
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body{
@@ -105,7 +106,7 @@ body{
 
 #menu{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: 20px;
     padding: 24px;
 }
@@ -135,6 +136,15 @@ body{
 
 .card h3{
     margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.card-top h3{
+    min-width: 0;
+}
+
+.card{
+    min-width: 0;
 }
 
 .card-top{
@@ -244,14 +254,24 @@ body{
 
 .cart-row{
     display: flex;
+    gap: 12px;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid #eee;
 }
 
+.cart-row > div:first-child{
+    min-width: 0;
+}
+
 .cart-row h4{
     margin: 0 0 4px;
+    overflow-wrap: anywhere;
+}
+
+.qty{
+    flex: none;
 }
 
 .qty{
@@ -470,6 +490,18 @@ body{
     #menu{
         padding: 16px;
         gap: 14px;
+    }
+
+    .checkout{
+        padding: 10px;
+    }
+
+    .checkout-box{
+        padding: 18px;
+    }
+
+    .checkout-buttons{
+        flex-wrap: wrap;
     }
 
     .category-title{
