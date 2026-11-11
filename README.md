@@ -10,6 +10,8 @@ A food ordering web app with a 90-dish menu, a cart that remembers you, and a re
 
 Live Preview: https://tapdish.senvor.dev/
 
+<img src="images/preview.png" alt="Tapdish home page" width="800" />
+
 </div>
 
 ---
@@ -27,7 +29,17 @@ The menu has **90 dishes across 6 categories**:
 - Breads & Sides
 - Desserts & Drinks
 
+## Pixel Art Menu
+
+Every one of the 90 dishes has its own hand-made pixel art icon, from samosas and momos to pizza slices, curries and chai.
+
+<div align="center">
+  <img src="images/pixel-food.png" alt="Some of the pixel art food icons" width="800" />
+</div>
+
 ## Features
+
+- **Pixel art icon for every dish**, scaled up crisp with no blur
 
 - **Category nav** that smooth-scrolls you straight to the section you want
 - **Cart panel** that slides in, with + / - buttons and a live total
@@ -36,6 +48,12 @@ The menu has **90 dishes across 6 categories**:
 - **Server-side checks**: the server looks up every price itself from the menu, so nobody can edit the page and get a $0 pizza
 - **Orders view** for the restaurant side, locked behind an admin key
 - Keyboard friendly: **Esc** closes the cart
+
+<div align="center">
+  <img src="images/menu.png" alt="Pizza and pasta section of the menu" width="800" />
+  <br/>
+  <i>The Pizza & Pasta section.</i>
+</div>
 
 ## How to Use
 
@@ -107,8 +125,10 @@ Tapdish/
 │   ├── index.html   # the page
 │   ├── style.css    # all the styling
 │   ├── script.js    # cart, checkout and orders logic
-│   └── menu.js      # the 90-dish menu
+│   ├── menu.js      # the 90-dish menu
+│   └── img/         # pixel art icon for each dish
 ├── server.js        # Express API
+├── images/          # README screenshots
 └── .github/workflows/pages.yml  # deploy to GitHub Pages
 ```
 
