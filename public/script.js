@@ -8,12 +8,17 @@ const menuEl = document.getElementById("menu");
 
 const categories = [...new Set(menu.map(item => item.category))];
 
+function slug(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
 function showMenu() {
     menuEl.innerHTML = "";
 
     categories.forEach(category => {
         const titleEl = document.createElement("h2");
         titleEl.className = "category-title";
+        titleEl.id = slug(category);
         titleEl.textContent = category;
         menuEl.appendChild(titleEl);
 
@@ -34,6 +39,15 @@ function showMenu() {
 }
 
 showMenu();
+
+const categoryNav = document.getElementById("category-nav");
+
+categories.forEach(category => {
+    const link = document.createElement("a");
+    link.href = "#" + slug(category);
+    link.textContent = category;
+    categoryNav.appendChild(link);
+});
 
 function loadCart() {
     try {
@@ -56,6 +70,12 @@ function updateCartButton() {
     cartButton.textContent = `Cart (${count})`;
 }
 
+function bumpCart() {
+    cartButton.classList.remove("bump");
+    void cartButton.offsetWidth;
+    cartButton.classList.add("bump");
+}
+
 function addToCart(itemId) {
     const existing = cart.find(line => line.id === itemId);
 
@@ -68,6 +88,7 @@ function addToCart(itemId) {
     updateCartButton();
     saveCart();
     showCart();
+    bumpCart();
 }
 
 function showCart() {
@@ -133,6 +154,15 @@ menuEl.addEventListener("click", e => {
     const id = e.target.dataset.id;
     if (!id) return;
     addToCart(Number(id));
+
+    const button = e.target;
+    button.textContent = "Added";
+    button.classList.add("added");
+
+    setTimeout(() => {
+        button.textContent = "Add to cart";
+        button.classList.remove("added");
+    }, 700);
 });
 
 cartItemsEl.addEventListener("click", e => {
