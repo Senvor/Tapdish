@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require("fs");
 const path = require("path");
 const menu = require("./public/menu.js");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -10,6 +11,7 @@ const DATA_DIR = path.join(__dirname, "data");
 const ORDERS_FILE = path.join(DATA_DIR, "orders.json");
 
 app.use(express.json());
+app.use(cors({ origin: "https://tapdish.senvor.dev" }));
 app.use(express.static(path.join(__dirname, "public")));
 
 function readOrders() {

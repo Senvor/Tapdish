@@ -175,6 +175,10 @@ document.getElementById("cancel-checkout").addEventListener("click", () => {
     openCart();
 });
 
+const API_URL = location.hostname === "tapdish.senvor.dev"
+    ? "https://tapdish-5drb.onrender.com"
+    : "";
+
 checkoutForm.addEventListener("submit", async e => {
     e.preventDefault();
 
@@ -182,7 +186,7 @@ checkoutForm.addEventListener("submit", async e => {
     submitButton.disabled = true;
 
     try {
-        const res = await fetch("/api/orders", {
+        const res = await fetch(`${API_URL}/api/orders`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
