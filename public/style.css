@@ -298,3 +298,47 @@ body{
 .checkout.done .confirmation{
     display: block;
 }
+
+.top-actions{
+    display: flex;
+    gap: 10px;
+}
+
+#orders-button{
+    background: none;
+    color: var(--cream);
+    border: 1px solid var(--cream);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.orders-box{
+    max-width: 640px;
+}
+
+#orders-key-form button,
+#close-orders{
+    margin-top: 12px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.order-card{
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.order-card h3{
+    margin: 0 0 4px;
+}
+
+.order-card p{
+    margin: 2px 0;
+}

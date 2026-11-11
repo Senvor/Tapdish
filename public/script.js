@@ -222,3 +222,75 @@ document.getElementById("close-confirmation").addEventListener("click", () => {
 });
 
 updateCartButton();
+
+const ordersView = document.getElementById("orders-view");
+const ordersKeyForm = document.getElementById("orders-key-form");
+const ordersList = document.getElementById("orders-list");
+const adminKeyInput = document.getElementById("admin-key");
+
+function showOrders(orders) {
+    ordersList.textContent = "";
+
+    if (orders.length === 0) {
+        ordersList.textContent = "No orders yet.";
+        return;
+    }
+
+    orders.slice().reverse().forEach(order => {
+        const card = document.createElement("div");
+        card.className = "order-card";
+
+        const title = document.createElement("h3");
+        title.textContent = `#${order.number} - $${order.total.toFixed(2)}`;
+
+        const who = document.createElement("p");
+        who.textContent = `${order.name} | ${order.email}`;
+
+        const where = document.createElement("p");
+        where.textContent = order.address;
+
+        const items = document.createElement("p");
+        items.textContent = order.items.map(i => `${i.qty} x ${i.name}`).join(", ");
+
+        const time = document.createElement("small");
+        time.textContent = new Date(order.createdAt).toLocaleString();
+
+        card.append(title, who, where, items, time);
+        ordersList.appendChild(card);
+    });
+}
+
+document.getElementById("orders-button").addEventListener("click", () => {
+    ordersList.textContent = "";
+    ordersKeyForm.style.display = "block";
+    ordersView.classList.add("open");
+});
+
+document.getElementById("close-orders").addEventListener("click", () => {
+    ordersView.classList.remove("open");
+    adminKeyInput.value = "";
+    ordersList.textContent = "";
+});
+
+ordersKeyForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    ordersList.textContent = "Loading...";
+
+    try {
+        const res = await fetch(`${API_URL}/api/orders`, {
+            headers: { "x-admin-key": adminKeyInput.value }
+        });
+
+        if (res.status === 401) {
+            ordersList.textContent = "Wrong key.";
+            return;
+        }
+        if (!res.ok) throw new Error("Request failed");
+
+        showOrders(await res.json());
+        ordersKeyForm.style.display = "none";
+        adminKeyInput.value = "";
+    } catch (err) {
+        ordersList.textContent = "Couldn't load orders.";
+    }
+});
