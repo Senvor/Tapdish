@@ -10,6 +10,8 @@ A food ordering web app with a 90-dish menu, a cart that remembers you, and a re
 
 Live Preview: https://tapdish.senvor.dev/
 
+Featured on the [XERJ Corpus Hub](https://hub.xerj.org/contributors/Senvor), which picked Tapdish as a code corpus for AI agents.
+
 <img src="images/preview.png" alt="Tapdish home page" width="800" />
 
 </div>
