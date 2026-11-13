@@ -31,6 +31,7 @@ The menu has **90 dishes across 6 categories**:
 
 ## Features
 
+- **Menu-style cards** with a veg / non-veg marker, Bestseller and Spicy tags, and a price pill
 - **Category nav** that smooth-scrolls you straight to the section you want
 - **Cart panel** that slides in, with + / - buttons and a live total
 - **Cart saves itself** in your browser, so a refresh doesn't eat your order

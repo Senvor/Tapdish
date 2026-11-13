@@ -28,9 +28,12 @@ function showMenu() {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
-                <h3>${item.name}</h3>
+                <div class="card-head">
+                    <h3><span class="diet ${item.veg ? "veg" : "nonveg"}" title="${item.veg ? "Veg" : "Non-veg"}"></span>${item.name}</h3>
+                    <span class="price">$${item.price.toFixed(2)}</span>
+                </div>
+                ${item.tags.length ? `<div class="tags">${item.tags.map(t => `<span class="tag tag-${slug(t)}">${t}</span>`).join("")}</div>` : ""}
                 <p>${item.desc}</p>
-                <span class="price">$${item.price.toFixed(2)}</span>
                 <button data-id="${item.id}">Add to cart</button>
             `;
             menuEl.appendChild(card);
