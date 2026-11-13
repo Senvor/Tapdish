@@ -139,25 +139,8 @@ body{
     overflow-wrap: anywhere;
 }
 
-.card-top h3{
-    min-width: 0;
-}
-
 .card{
     min-width: 0;
-}
-
-.card-top{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.dish-img{
-    flex: none;
-    width: 72px;
-    height: 72px;
-    image-rendering: pixelated;
 }
 
 .card .price{

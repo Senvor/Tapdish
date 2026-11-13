@@ -28,10 +28,7 @@ function showMenu() {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
-                <div class="card-top">
-                    <img class="dish-img" src="img/${item.id}.png" alt="" width="72" height="72" loading="lazy">
-                    <h3>${item.name}</h3>
-                </div>
+                <h3>${item.name}</h3>
                 <p>${item.desc}</p>
                 <span class="price">$${item.price.toFixed(2)}</span>
                 <button data-id="${item.id}">Add to cart</button>
