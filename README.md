@@ -8,9 +8,9 @@ A food ordering web app with a 90-dish menu, a cart that remembers you, and a re
 
 ![Hackatime](https://hackatime.hackclub.com/api/v1/badge/U0B4TE3MN1G/Senvor/Tapdish)
 
-Live Preview: https://tapdish.senvor.dev/
+**[Live Preview](https://tapdish.senvor.dev/)**
 
-![Tapdish menu](images/preview.png)
+[![Tapdish menu](images/preview.png)](https://tapdish.senvor.dev/)
 
 Featured on the [XERJ Corpus Hub](https://hub.xerj.org/contributors/Senvor), which picked Tapdish as a code corpus for AI agents.
 
